@@ -8,7 +8,6 @@ def handler(request, response):
     path = os.path.join(os.path.dirname(__file__), "marks.json")
 
     with open(path) as f:
-        marks_data = json.load(f)
+        data = json.load(f)
 
-    result = [marks_data.get(name, None) for name in names]
-    return response.json({ "marks": result })
+    return response.json({ "marks": [data.get(name) for name in names] })
